@@ -1,5 +1,6 @@
 import React from "react";
 import MathButton from "./MathButton";
+import ResultPanel from "./ResultPanel";
 
 export default class Component3 extends React.Component {
   state = {
@@ -8,7 +9,7 @@ export default class Component3 extends React.Component {
   };
 
   handleMathClick = (type, number) => {
-    if (type === "substraction") {
+    if (type === "subtraction") {
       this.setState((prevState) => ({
         count: prevState.count + 1,
         result: prevState.result - number,
@@ -32,26 +33,34 @@ export default class Component3 extends React.Component {
         <MathButton
           name="-10"
           number="10"
-          type="substraction"
+          type="subtraction"
           click={this.handleMathClick}
         />
-        <button onClick={this.handleMathClick.bind(this, "substraction", 1)}>
-          -1
-        </button>
-        <button onClick={this.handleMathClick.bind(this, "reset", 0)}>
-          Reset
-        </button>
-        <button onClick={this.handleMathClick.bind(this, "addition", 1)}>
-          +1
-        </button>
+        <MathButton
+          name="-1"
+          number="1"
+          type="subtraction"
+          click={this.handleMathClick}
+        />
+        <MathButton
+          name="Reset"
+          number="0"
+          type="reset"
+          click={this.handleMathClick}
+        />
+        <MathButton
+          name="+1"
+          number="1"
+          type="addition"
+          click={this.handleMathClick}
+        />
         <MathButton
           name="+10"
           number="10"
           type="addition"
           click={this.handleMathClick}
         />
-        <h1>Liczba kliknięć: {this.state.count} </h1>
-        <h1>Wynik: {this.state.result}</h1>
+        <ResultPanel count={this.state.count} result={this.state.result} />
       </>
     );
   }
